@@ -17,10 +17,13 @@ def writer_number(image_file_path,number=1):
 	#加载字体格式和字体大小
 	font = ImageFont.truetype("/usr/share/fonts/truetype/ubuntu-font-family/Ubuntu-B.ttf",size=font_size)
 	#font为返回的字体的对象，为元组类，打印[0]看看
-	print(font.getsize(number_txt)[0])	
+	print(font.getsize(number_txt)[0])
+	#比较字体大小与整图大小，如果字体大，用图片大小	
 	if font.getsize(number_txt)[0] > img.size[0] or font.getsize(number_txt)[1] > img.size[1]:
 		return img
+	#图片大小减去字体大小，得到在X轴上的位置
 	position = img.size[0] - font.getsize(number_txt)[0]
+	print(position)
 	ImageDraw.Draw(img).text((position,0),number_txt,(255,0,0),font)
 	return img
 
